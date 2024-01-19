@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+</head>
+
+<body>
+    <h1>UUID Generator</h1>
+    <button id="generateButton" onclick="generateUUID()">Generate UUID</button>
+    <h5>Сгенерированный UUID: </h5>
+    <p id="uuidResult"></p>
+    <button id="copyButton" data-clipboard-target="#uuidResult">Copy to Clipboard</button>
+
+
+<script>
+    function generateUUID() {
+        fetch('/generateUUID')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('uuidResult').innerText = data;
+            });
+    }
+
+    var clipboard = new ClipboardJS('#copyButton');
+
+    clipboard.on('success', function (e) {
+        console.log('Copied to clipboard:', e.text);
+    });
+
+    clipboard.on('error', function (e) {
+        console.error('Error copying to clipboard:', e.action);
+    });
+</script>
+</body>
+
+</html>
+
+
+<!--Этот код добавляет HTML-страницу с кнопкой "Generate UUID" и элементом p для отображения сгенерированного UUID. -->
+<!--JavaScript обеспечивает вызов generateUUID()-->
+<!--при нажатии кнопки, который затем использует fetch для отправки запроса на "/generateUUID" и отображения результата.-->

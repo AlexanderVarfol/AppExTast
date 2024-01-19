@@ -1,21 +1,38 @@
 package com.example.appextast.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
-@RestController
+import java.util.UUID;
+
+//@RequiredArgsConstructor
+//@RestController
+@Controller
+@RequestMapping({ "/first"})
 public class WindowController {
 
-    @GetMapping("/h")
-    public String helloPage(){
-        return "first/hallo";
+    @RequestMapping({"/home"})
+    public String home() {
+        return "index-home";
     }
 
-    @GetMapping("/b")
-    public String byePage(){
-        return "first/goodbye";
+    @RequestMapping({"/{id}"})
+    public String getCard(@PathVariable String id) {
+        return "index-card";
     }
+
+    @RequestMapping({"/g"})
+    public String getUUID() {
+        return "index-uuid";
+
+    }
+
+
+
+
 
 }
